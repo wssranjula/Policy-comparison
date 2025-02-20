@@ -8,7 +8,7 @@ import os
 
 # Load environment variables
 load_dotenv()
-
+api_key = st.secrets["GOOGLE_API_KEY"]
 # Initialize the LLM
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.0-flash",
@@ -16,7 +16,7 @@ llm = ChatGoogleGenerativeAI(
     max_tokens=None,
     timeout=None,
     max_retries=2,
-    api_key=os.getenv("GOOGLE_API_KEY")
+    api_key=api_key
 )
 
 # Import your existing prompts (assuming they exist in prompt.py)
