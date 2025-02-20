@@ -10,7 +10,7 @@ llm = ChatGoogleGenerativeAI(
     max_tokens=None,
     timeout=None,
     max_retries=2,
-    api_key='AIzaSyDpo53TvS772H6cZ1OC46wBmQFkmByDEEU'
+    api_key=''
     # other params...
 )
 from langchain_community.document_loaders import Docx2txtLoader
