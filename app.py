@@ -79,13 +79,42 @@ st.title("📑 Company Policy Analyzer")
 st.markdown("Upload a PDF to analyze against company policies or chat with the policy document.")
 
 # Industry Dropdown
+# Industry Dropdowns
 with st.container():
-    st.selectbox(
-        "Select Industry (Coming Soon)",
-        ["General", "Healthcare", "Finance", "Technology"],
-        disabled=True,
-        help="Industry-specific policy analysis coming soon!"
+    # First Dropdown: Industry Selection
+    industry = st.selectbox(
+        "Select Industry",
+        ["Financial Services", "Healthcare (Coming Soon)", "Technology (Coming Soon)"],
+        help="Industry-specific policy analysis coming soon for some sectors!"
     )
+
+    # Define options for the second dropdown based on industry
+    second_dropdown_options = {
+        "Financial Services": ["AML", "Credit", "ARPA", "Fraud Prevention", "Regulatory Compliance"],
+        "Healthcare (Coming Soon)": ["Coming Soon"],
+        "Technology (Coming Soon)": ["Coming Soon"]
+    }
+
+    # Second Dropdown: Subcategory Selection
+    if industry == "Financial Services":
+        subcategory = st.selectbox(
+            "Select Policy Area",
+            second_dropdown_options[industry],
+            help="Select a specific policy area to focus on."
+        )
+    else:
+        subcategory = st.selectbox(
+            "Select Policy Area",
+            second_dropdown_options[industry],
+            disabled=True,
+            help="Subcategories coming soon for this industry!"
+        )
+    
+    # Optional: Display selected subcategory (for debugging or UI purposes)
+    if industry == "Financial Services" and subcategory:
+        st.write(f"Selected Policy Area: {subcategory}")
+    elif industry != "Financial Services":
+        st.write("Subcategory selection unavailable until industry is fully implemented.")
 
 # Main content with equal columns
 MASTER_DATA_PATH = "./cleaned_document.docx"
