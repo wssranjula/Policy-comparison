@@ -97,8 +97,8 @@ def main():
         print("Please install python-docx first: pip install python-docx")
         return
 
-    input_file = "C2024C00567.docx"
-    output_file = "cleaned_document.docx"
+    input_file = "ASIC2.docx"
+    output_file = "asic2cleaned.docx"
     clean_docx(input_file, output_file)
 
 if __name__ == "__main__":

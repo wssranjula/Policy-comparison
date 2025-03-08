@@ -90,7 +90,7 @@ with st.container():
 
     # Define options for the second dropdown based on industry
     second_dropdown_options = {
-        "Financial Services": ["AML", "Credit", "ARPA", "Fraud Prevention", "Regulatory Compliance"],
+        "Financial Services": ["AML",  "ARPA", "Work place health and safety","Privacy","Treasury Law","Fraud Prevention", "Credit","Regulatory Compliance"],
         "Healthcare (Coming Soon)": ["Coming Soon"],
         "Technology (Coming Soon)": ["Coming Soon"]
     }
@@ -117,12 +117,34 @@ with st.container():
         st.write("Subcategory selection unavailable until industry is fully implemented.")
 
 # Main content with equal columns
-MASTER_DATA_PATH = "./cleaned_document.docx"
+AML_DATA_PATH = "./cleaned_document.docx"
+ARPA_DATA_PATH = "./ARPA1.docx"
+CREDIT_DATA_PATH = "./credit.docx"
+WORK_PLACE_HEALTH_SAFETY_PATH = "./wplhs.docx"
+TREASURY_LAW_DTA_PATH = "./tlcleaned.docx"
+PRIVACY_DATA_PATH = "./privacycleaned.docx"
 
-if not os.path.exists(MASTER_DATA_PATH):
-    st.error(f"Master data file not found at: {MASTER_DATA_PATH}")
+
+if not os.path.exists(AML_DATA_PATH):
+    st.error(f"Master data file not found at: {AML_DATA_PATH}")
 else:
-    company_policy = load_master_data(MASTER_DATA_PATH)
+        # Set the data path based on the selected subcategory
+    if subcategory == "ARPA":
+        data_path = ARPA_DATA_PATH
+    # elif subcategory == "Credit":
+    #     data_path = CREDIT_DATA_PATH
+    elif subcategory == "AML":
+        data_path = AML_DATA_PATH
+    elif subcategory == "Work place health and safety":
+        data_path = WORK_PLACE_HEALTH_SAFETY_PATH
+    elif subcategory == "Treasury Law":
+        data_path = TREASURY_LAW_DTA_PATH
+    elif subcategory == "Privacy":
+        data_path = PRIVACY_DATA_PATH
+    else :
+         data_path = AML_DATA_PATH
+    print(data_path)
+    company_policy = load_master_data(data_path)
     
     if 'chat_history' not in st.session_state:
         st.session_state['chat_history'] = [{"role": "assistant", "content": "Hello! You can ask me anything about the company policy, or upload a document to analyze it against the policy."}]
